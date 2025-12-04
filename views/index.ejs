@@ -11,10 +11,33 @@
   <body>
     <h1>Haikus for Mona</h1>
     <div>
-      <% for(var i=0; i < haikus.length; i++) { %>
-        <img
-          class="mona-images"
-          src="images/<%= haikus[i].image %>" />
+      <% for(var i=0; i < haikus.length; i++) { 
+        const firstLine = haikus[i].text.split('\n')[0];
+        const emojiMap = {
+          'Cloudflare': '☁️',
+          'JSON': '📄',
+          'code': '💻',
+          'computer': '🖥️',
+          'npm': '📦',
+          'Why': '🤔',
+          'My': '🔧',
+          'bug': '🐛',
+          'cat': '🐱'
+        };
+        
+        let emoji = '✨';
+        for (const [keyword, icon] of Object.entries(emojiMap)) {
+          if (firstLine.includes(keyword)) {
+            emoji = icon;
+            break;
+          }
+        }
+      %>
+        <div class="haiku-visual" style="background: linear-gradient(<%= 135 + (i * 30) %>deg, 
+          hsl(<%= (i * 60) %>, 70%, 40%), 
+          hsl(<%= (i * 60 + 40) %>, 60%, 30%));">
+          <span><%= emoji %></span>
+        </div>
         <div 
           class="haiku-containers">
           <p 
