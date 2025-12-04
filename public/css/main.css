@@ -58,10 +58,6 @@ body {
     font-family: 'Ubuntu', system-ui, sans-serif;
     background: var(--bg);
     min-height: 100vh;
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
     color: var(--text);
     text-align: center;
     padding: 40px 20px;
@@ -92,13 +88,258 @@ body::before {
 h1 {
     font-size: 3em;
     font-weight: 500;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     color: var(--primary);
     text-shadow: 0 0 8px rgba(0, 217, 255, 0.8);
     letter-spacing: 3px;
     animation: pulse-text 3s ease-in-out infinite;
     position: relative;
     z-index: 10;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: 400;
+    color: var(--primary);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.left-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.right-section {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.haiku-generator {
+    margin: 0 auto 40px;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 2px solid var(--primary);
+    box-shadow: var(--neon-glow);
+    position: relative;
+    z-index: 10;
+}
+
+.generator-subtitle {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.generator-form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.right-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.right-section::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-radius: 4px;
+}
+
+.right-section::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.right-section::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+.generated-title {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    padding: 10px 0;
+    z-index: 5;
+}
+
+.generated-haikus-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.generated-haiku-tile {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 15px;
+    position: relative;
+    animation: slideIn 0.4s ease-out;
+    transition: all 0.3s ease;
+}
+
+.generated-haiku-tile:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+.tile-visual {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin-bottom: 12px;
+}
+
+.tile-visual span {
+    filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.6));
+}
+
+.tile-haiku {
+    padding: 10px;
+}
+
+.tile-text {
+    font-size: 0.95em;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--text);
+    margin: 0;
+}
+
+.tile-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.8);
+    border: 1px solid rgba(255, 0, 0, 1);
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.tile-delete:hover {
+    opacity: 1;
+    background: rgba(255, 0, 0, 1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.neon-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px 20px;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.neon-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+}
+
+.neon-button {
+    padding: 15px 30px;
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+}
+
+.neon-button:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 0 25px rgba(0, 217, 255, 0.8), 0 0 40px rgba(0, 217, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.neon-button:active {
+    transform: translateY(0);
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: 40px 0;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    position: relative;
+    z-index: 10;
+}
+
+.collection-title {
+    margin-bottom: 30px;
+}
+
+.original-haikus {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .haiku-visual {
@@ -177,6 +418,22 @@ h1 {
     transform: translateX(5px);
 }
 
+@media only screen and (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .right-section {
+        position: relative;
+        max-height: 600px;
+        order: -1;
+    }
+
+    .left-section {
+        max-width: 100%;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     body {
         padding: 20px 10px;
@@ -184,8 +441,26 @@ h1 {
 
     h1 {
         font-size: 2em;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .haiku-generator {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+
+    .generator-form {
+        flex-direction: column;
+    }
+
+    .neon-input,
+    .neon-button {
+        width: 100%;
     }
 
     .haiku-visual {
@@ -204,5 +479,19 @@ h1 {
         font-size: 20px;
         padding: 20px;
         border-left-width: 3px;
+    }
+
+    .right-section {
+        padding: 15px;
+        max-height: 500px;
+    }
+
+    .tile-visual {
+        height: 80px;
+        font-size: 2em;
+    }
+
+    .tile-text {
+        font-size: 0.85em;
     }
 }
